@@ -28,3 +28,5 @@ def first_unique_product(products: list[str]) -> str | None:
 if __name__ == '__main__':
     import doctest
     doctest.testmod(verbose=True)
+
+    # I wanted to preserve this file, I did everything on the main.py and separated classes for the implementation

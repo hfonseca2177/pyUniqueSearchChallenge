@@ -59,6 +59,9 @@ Find first term that is unique in a collection
 - seems practical, but not performance friendly, because you must check and retrieve from dictionary based on the key, so there is a cost involved
 - spent some time to create an interface, and test suite for the implementations
 
+#Approach #2 LOG
+- ideally would profile and test if worth using this approach
+
 ### TESTS ###
 
 #APPROACH 1

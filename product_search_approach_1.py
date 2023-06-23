@@ -11,7 +11,7 @@ class ProductSearchApproach1(ProductSearch, ABC):
         # checks if list is empty
         if not products:
             return None
-        # if it has only one item
+        # if it has only one item (saving some process and memory)
         if len(products) == 1:
             return products[0]
 
