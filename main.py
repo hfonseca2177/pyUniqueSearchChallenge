@@ -1,4 +1,8 @@
 """
+CODE TEST
+Hugo Fonseca
+hfonseca21@gmail.com
+
 Using REACTO framework to solve it
 
 ######  REPEAT -  check of understanding ######
@@ -33,7 +37,7 @@ Find first term that is unique in a collection
 
     Approach #2
     - get 1 term and check all the other members
-    - I would get a O (n^2) scenario, but could get a chance to be faster, if one the first elements are already unique
+    - I would get a O(n^2) scenario, but could get a chance to be faster, if one the first elements are already unique
 
 -> a little thinking about what could make difference:
     - Ordered list? : I guess not because doesn't change the fact that I would need to test all terms.
@@ -57,37 +61,56 @@ Find first term that is unique in a collection
 
 ### TESTS ###
 
->>> from product_search_approach_1 import ProductSearchApproach1
->>> prod_search_approach1 = ProductSearchApproach1()
->>> find_unique(prod_search_approach1, ['A']) #test 1 element
+#APPROACH 1
+#>>> from product_search_approach_1 import ProductSearchApproach1
+#>>> prod_search_approach = ProductSearchApproach1()
+
+#APPROACH 2
+>>> from product_search_approach_2 import ProductSearchApproach2
+>>> prod_search_approach = ProductSearchApproach2()
+
+#Tests
+>>> find_unique(prod_search_approach, ['A']) #test 1 element
 'A'
->>> find_unique(prod_search_approach1, ['A', 'B', 'C', 'A']) #test second element
+>>> find_unique(prod_search_approach, ['A', 'B', 'C', 'A']) #test second element
 'B'
->>> find_unique(prod_search_approach1, []) #test empty list
->>> find_unique(prod_search_approach1, ['D', 'B', 'C', 'A']) #All unique / gets first
+>>> find_unique(prod_search_approach, []) #test empty list
+>>> find_unique(prod_search_approach, ['D', 'B', 'C', 'A']) #All unique / gets first
 'D'
->>> find_unique(prod_search_approach1, ['C', 'D', 'C', 'D']) #No unique
->>> find_unique(prod_search_approach1, ['C', 'C', 'C', 'C']) #All repeated
->>> find_unique(prod_search_approach1, ['A', 'C', 'A', 'B', 'E', 'E', 'B', 'C', 'D']) #Unique at the end
+>>> find_unique(prod_search_approach, ['C', 'D', 'C', 'D']) #No unique
+>>> find_unique(prod_search_approach, ['C', 'C', 'C', 'C']) #All repeated
+>>> find_unique(prod_search_approach, ['A', 'C', 'A', 'B', 'E', 'E', 'B', 'C', 'D']) #Unique at the end
 'D'
->>> find_unique(prod_search_approach1, ['A', 'C', 'A', 'B','D', 'E', 'E', 'B', 'C']) #Unique at the middle
+>>> find_unique(prod_search_approach, ['A', 'C', 'A', 'B','D', 'E', 'E', 'B', 'C']) #Unique at the middle
 'D'
+>>> find_unique(prod_search_approach, create_big_list()) #Big list
+'B'
 
 """
 from __future__ import annotations
 
 from product_search import ProductSearch
 
+import cProfile
+
 
 def find_unique(product_search: ProductSearch, products_list: list[str]):
     return product_search.first_unique_product(products_list)
 
 
-if __name__ == '__main__':
-    print("#####    Unique product search    #######")
+def create_big_list():
+    big_list = ['A']
+    for _ in range(10000):
+        big_list.append('A')
+    big_list.append('B')
+    return big_list
 
+
+def execute_tests():
     import doctest
     doctest.testmod(verbose=True)
 
 
-
+if __name__ == '__main__':
+    print("#####    Unique product search    #######")
+    cProfile.run('execute_tests()')
