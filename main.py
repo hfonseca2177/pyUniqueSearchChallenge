@@ -30,11 +30,10 @@ Find first term that is unique in a collection
         Being n = number of terms,
         Being t = times to go through term list, first time add to the map and compute count, 2nd time to check if there is only one term with count = 1
         O (n) * t =  ignoring constant we would have a O(n) scenario
+
     Approach #2
     - get 1 term and check all the other members
     - I would get a O (n^2) scenario, but could get a chance to be faster, if one the first elements are already unique
-
-
 
 -> a little thinking about what could make difference:
     - Ordered list? : I guess not because doesn't change the fact that I would need to test all terms.
@@ -52,9 +51,43 @@ Find first term that is unique in a collection
 -> approach #2 is very straight forward, but should take in consideration the worst case scenario as a base, and what could be done to improve it
 
 
+#Approach #1 LOG
+- seems practical, but not performance friendly, because you must check and retrieve from dictionary based on the key, so there is a cost involved
+- spent some time to create an interface, and test suite for the implementations
+
+### TESTS ###
+
+>>> from product_search_approach_1 import ProductSearchApproach1
+>>> prod_search_approach1 = ProductSearchApproach1()
+>>> find_unique(prod_search_approach1, ['A']) #test 1 element
+'A'
+>>> find_unique(prod_search_approach1, ['A', 'B', 'C', 'A']) #test second element
+'B'
+>>> find_unique(prod_search_approach1, []) #test empty list
+>>> find_unique(prod_search_approach1, ['D', 'B', 'C', 'A']) #All unique / gets first
+'D'
+>>> find_unique(prod_search_approach1, ['C', 'D', 'C', 'D']) #No unique
+>>> find_unique(prod_search_approach1, ['C', 'C', 'C', 'C']) #All repeated
+>>> find_unique(prod_search_approach1, ['A', 'C', 'A', 'B', 'E', 'E', 'B', 'C', 'D']) #Unique at the end
+'D'
+>>> find_unique(prod_search_approach1, ['A', 'C', 'A', 'B','D', 'E', 'E', 'B', 'C']) #Unique at the middle
+'D'
+
 """
+from __future__ import annotations
+
+from product_search import ProductSearch
+
+
+def find_unique(product_search: ProductSearch, products_list: list[str]):
+    return product_search.first_unique_product(products_list)
+
 
 if __name__ == '__main__':
-    print("#####    Unique term search    #######")
+    print("#####    Unique product search    #######")
+
+    import doctest
+    doctest.testmod(verbose=True)
+
 
 
